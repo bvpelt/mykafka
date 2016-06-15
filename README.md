@@ -2,6 +2,7 @@
 
 + See [producer configuration](http://kafka.apache.org/documentation.html#producerconfigs)
 + See https://github.com/mapr-demos/kafka-sample-programs
++ See [Nexus](https://repository.sonatype.org/) for class/maven package relations
 
 ## Prerequisits
 To start, you need to get Kafka up and running and create some topics.
@@ -75,11 +76,7 @@ data directories they were using from /tmp
 ```
 $ fg
 bin/kafka-server-start.sh config/server.properties
-^C[2016-02-06 18:06:56,683] INFO [Kafka Server 0], shutting down (kafka.server.KafkaServer)
-...
-[2016-02-06 18:06:58,977] INFO EventThread shut down (org.apache.zookeeper.ClientCnxn)
-[2016-02-06 18:06:58,978] INFO Closed socket connection for client /fe80:0:0:0:0:0:0:1%1:65170 which had sessionid 0x152b958c3300000 (org.apache.zookeeper.server.NIOServerCnxn)
-[2016-02-06 18:06:58,979] INFO [Kafka Server 0], shut down completed (kafka.server.KafkaServer)
+^C
 $ fg
 bin/zookeeper-server-start.sh config/zookeeper.properties
 ^C

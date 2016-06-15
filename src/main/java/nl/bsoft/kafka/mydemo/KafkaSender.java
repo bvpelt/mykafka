@@ -2,13 +2,11 @@ package nl.bsoft.kafka.mydemo;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Properties;
+import java.util.Enumeration;
 
-import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,36 +34,31 @@ public class KafkaSender {
 
 		ProducerRecord<String, String> pr = new ProducerRecord<String, String>(destination, key, message);
 
-		producer.send(pr);		
+		producer.send(pr);
 	}
 
 	/**
 	 * create a producer
 	 * 
-	 * see http://kafka.apache.org/documentation.html#producerconfigs for valid 
-	 * configuration elements
-	 * see https://github.com/mapr-demos/kafka-sample-programs/blob/master/src/main/java/com/mapr/examples/Producer.java for example
+	 * see http://kafka.apache.org/documentation.html#producerconfigs for valid
+	 * configuration elements see
+	 * https://github.com/mapr-demos/kafka-sample-programs/blob/master/src/main/
+	 * java/com/mapr/examples/Producer.java for example
 	 */
 	public void createProducer() {
-		/*
-		 * Properties props = new Properties(); 
-		 * props.put("acks", "all");
-		 * props.put("auto.commit.interval.ms", 1000); 
-		 * //props.put("batch.size",* 16384); 
-		 * props.put("block.on.buffer.full", true);
-		 * props.put("bootstrap.servers", "localhost:9092");
-		 * //props.put("buffer.memory", 33554432); 
-		 * //props.put("client.id", * "KafkaSender"); 
-		 * //props.put("connections.max.idle.ms", 2000);
-		 * props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-		 * props.put("linger.ms", 0); 
-		 * props.put("retries", 0);
-		 * props.put("value.serializer","org.apache.kafka.common.serialization.StringSerializer"); 
-		 * producer = new KafkaProducer<>(props);
-		 */
 		try (InputStream props = Resources.getResource("producer.props").openStream()) {
-			Properties properties = new Properties();
+			SortedProperties properties = new SortedProperties();
 			properties.load(props);
+
+			if (logger.isDebugEnabled()) {
+				logger.debug("Start List of Producer specified properties");
+				for (Enumeration<Object> e = properties.keys(); e.hasMoreElements();) {
+					Object o = e.nextElement();
+					logger.debug("Property: {} Value: {}", o, properties.get(o));
+				}
+				logger.debug("End   List of Producer specified properties");
+			}
+
 			producer = new KafkaProducer<>(properties);
 		} catch (IOException e) {
 			producer = null;
