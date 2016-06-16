@@ -12,10 +12,10 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.io.Resources;
 
-public class KafkaSender {
+public class KafkaSender<K,V>{
 	private static Logger logger = LoggerFactory.getLogger(KafkaSender.class);
 
-	private Producer<String, String> producer = null;
+	private Producer<K, V> producer = null;
 
 	public KafkaSender() {
 		logger.debug("Created a KafkaSender");
@@ -29,10 +29,34 @@ public class KafkaSender {
 		logger.debug("Started producer");
 	}
 
-	public void sendMessage(String destination, String key, String message) {
-		logger.debug("Send message to: {} key: {} message: {}", destination, key, message);
+	public void sendMessage(String topic, Integer partition, K key, V message) {
+		logger.debug("Send message topic: {} partition: {} key: {} message: {}", topic, partition, key, message);
 
-		ProducerRecord<String, String> pr = new ProducerRecord<String, String>(destination, key, message);
+		ProducerRecord<K, V> pr = new ProducerRecord<K, V>(topic, partition, key, message);
+
+		producer.send(pr);
+	}
+
+	public void sendMessage(String topic, Integer partition, Long timestamp, K key, V message) {
+		logger.debug("Send message topic: {} partition: {} timestamp: {} key: {} message: {}", topic, partition, timestamp, key, message);
+
+		ProducerRecord<K, V> pr = new ProducerRecord<K, V>(topic, partition, timestamp, key, message);
+
+		producer.send(pr);
+	}
+	
+	public void sendMessage(String topic, K key, V message) {
+		logger.debug("Send message topic: {} key: {} message: {}", topic, key, message);
+
+		ProducerRecord<K, V> pr = new ProducerRecord<K, V>(topic, key, message);
+
+		producer.send(pr);
+	}
+
+	public void sendMessage(String topic, V message) {
+		logger.debug("Send message topic: {} key: {} message: {}", topic, message);
+
+		ProducerRecord<K, V> pr = new ProducerRecord<K, V>(topic, message);
 
 		producer.send(pr);
 	}

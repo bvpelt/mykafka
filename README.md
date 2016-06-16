@@ -3,6 +3,11 @@
 + See [producer configuration](http://kafka.apache.org/documentation.html#producerconfigs)
 + See https://github.com/mapr-demos/kafka-sample-programs
 + See [Nexus](https://repository.sonatype.org/) for class/maven package relations
++ See [Companies using Kafka](https://cwiki.apache.org/confluence/display/KAFKA/Powered+By)
++ See [Kafka manager](https://github.com/yahoo/kafka-manager)
+
+TODO
++ Start zookeeper and kafka from unit test see [https://cwiki.apache.org/confluence/display/KAFKA/FAQ#FAQ-HowdoIwriteunittestsusingKafka?](https://cwiki.apache.org/confluence/display/KAFKA/FAQ#FAQ-HowdoIwriteunittestsusingKafka?) 
 
 ## Prerequisits
 To start, you need to get Kafka up and running and create some topics.
@@ -43,15 +48,31 @@ the process and kill it explicitly using `kill`.
 We need one topic for the test program
 ```
 $ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic my-topic
+$ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 4 --topic my-part-topic
 ```
 These can be listed
 ```
 $ bin/kafka-topics.sh --list --zookeeper localhost:2181
+my-part-topic
 my-topic
+```
+Or described
+```
+$ bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-topic
+Topic:my-topic	PartitionCount:1	ReplicationFactor:1	Configs:
+	Topic: my-topic	Partition: 0	Leader: 0	Replicas: 0	Isr: 0
+
+$ bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-part-topic
+Topic:my-topic	PartitionCount:4	ReplicationFactor:1	Configs:
+	Topic: my-topic	Partition: 0	Leader: 0	Replicas: 0	Isr: 0
+	Topic: my-topic	Partition: 1	Leader: 0	Replicas: 0	Isr: 0
+	Topic: my-topic	Partition: 2	Leader: 0	Replicas: 0	Isr: 0
+	Topic: my-topic	Partition: 3	Leader: 0	Replicas: 0	Isr: 0
 ```
 Note that you will see log messages from the Kafka process when you
 run Kafka commands. You can switch to a different window if these are
 distracting.
+
 The broker can be configured to auto-create new topics as they are mentioned, but that is often considered a bit 
 dangerous because mis-spelling a topic name doesn't cause a failure.
 
