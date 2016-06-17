@@ -5,6 +5,7 @@
 + See [Nexus](https://repository.sonatype.org/) for class/maven package relations
 + See [Companies using Kafka](https://cwiki.apache.org/confluence/display/KAFKA/Powered+By)
 + See [Kafka manager](https://github.com/yahoo/kafka-manager)
++ See [Comparison kafka vs RabbitMQ](https://www.quora.com/What-are-the-differences-between-Apache-Kafka-and-RabbitMQ)
 
 TODO
 + Start zookeeper and kafka from unit test see [https://cwiki.apache.org/confluence/display/KAFKA/FAQ#FAQ-HowdoIwriteunittestsusingKafka?](https://cwiki.apache.org/confluence/display/KAFKA/FAQ#FAQ-HowdoIwriteunittestsusingKafka?) 
