@@ -1,9 +1,11 @@
 package nl.bsoft.kafka.mydemo;
 
-import java.util.Random;
+
 import java.util.UUID;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
@@ -12,17 +14,51 @@ import org.junit.runners.MethodSorters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import kafka.server.KafkaConfig;
+import kafka.server.KafkaServer;
+
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestKafka {
 	private static Logger logger = LoggerFactory.getLogger(TestKafka.class);
 
-	private static int MAX_MESSAGES = 500;
+	private static int MAX_MESSAGES = 5;
 	private static int MAX_PARTITION = 4;
 	private static String my_topic = "my-topic";
 	private static String my_part_topic = "my-part-topic";
 
+	private KafkaBroker kb = null;
+	
 	@Rule
 	public TestName name = new TestName();
+
+	@Before
+	public void startKafka() {
+		logger.info("Start test: {}", name.getMethodName());
+
+		kb = new KafkaBroker();
+		KafkaConfig kc = kb.getConfig();
+		
+		logger.info("advertisedHostName: {}", kc.advertisedHostName());
+		logger.info("authorizerClassName: {}", kc.authorizerClassName());
+		logger.info("compressionType: {}", kc.compressionType());
+		logger.info("hostName: {}", kc.hostName());
+		logger.info("interBrokerProtocolVersionString: {}",kc.interBrokerProtocolVersionString());
+		logger.info("logCleanupPolicy: {}",kc.logCleanupPolicy());
+		logger.info("logMessageFormatVersionString: {}",kc.logMessageFormatVersionString());
+		logger.info("saslKerberosKinitCmd: {}", kc.saslKerberosKinitCmd());
+		logger.info("saslKerberosServiceName: {}", kc.saslKerberosServiceName());
+		logger.info("saslMechanismInterBrokerProtocol: {}", kc.saslMechanismInterBrokerProtocol());
+		logger.info("sslClientAuth: {}", kc.sslClientAuth());
+		
+		
+		logger.info("End   test: {}", name.getMethodName());
+	}
+	
+	@After
+	public void stopKafka() {
+		kb.stop();
+	}
 
 	public void test_A_Sender() {
 		KafkaSender<String,String> kafkaSender = new KafkaSender<String,String>();

@@ -69,7 +69,7 @@ public class KafkaSender<K,V>{
 	 * https://github.com/mapr-demos/kafka-sample-programs/blob/master/src/main/
 	 * java/com/mapr/examples/Producer.java for example
 	 */
-	public void createProducer() {
+	private void createProducer() {
 		try (InputStream props = Resources.getResource("producer.props").openStream()) {
 			SortedProperties properties = new SortedProperties();
 			properties.load(props);

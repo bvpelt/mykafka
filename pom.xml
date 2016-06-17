@@ -12,7 +12,10 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- 
 		<curator.version>3.1.0</curator.version>
+		 -->
+		<curator.version>2.9.1</curator.version>
 		<guava.version>19.0</guava.version>
 		<junit.version>4.12</junit.version>
 		<kafka.version>0.10.0.0</kafka.version>
@@ -42,7 +45,7 @@
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka_2.11</artifactId>
 			<version>${kafka.version}</version>
-			
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.curator</groupId>
@@ -50,6 +53,8 @@
 			<version>${curator.version}</version>
 			<scope>test</scope>
 		</dependency>
+		
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

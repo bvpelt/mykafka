@@ -36,6 +36,7 @@ public class TestKafkaCluster {
          */
     	 Properties props = new Properties();
     	 return new KafkaConfig(props);
+    	 
      }
   
      public String getKafkaBrokerString() {

@@ -6,6 +6,7 @@
 + See [Companies using Kafka](https://cwiki.apache.org/confluence/display/KAFKA/Powered+By)
 + See [Kafka manager](https://github.com/yahoo/kafka-manager)
 + See [Comparison kafka vs RabbitMQ](https://www.quora.com/What-are-the-differences-between-Apache-Kafka-and-RabbitMQ)
++ See [Unit testing](https://github.com/charithe/kafka-junit)
 
 TODO
 + Start zookeeper and kafka from unit test see [https://cwiki.apache.org/confluence/display/KAFKA/FAQ#FAQ-HowdoIwriteunittestsusingKafka?](https://cwiki.apache.org/confluence/display/KAFKA/FAQ#FAQ-HowdoIwriteunittestsusingKafka?) 
@@ -25,6 +26,9 @@ $ cd kafka-0.10.0.0
 ```
 ### Step 2: Start the server
 Starting a server means staring zookeeper and kafka!
+This is the single broker cluster configuration
+
+![Fig 1](images/singlebroker.png)
 
 #### Step 2.1: Start zookeeper
 Start a ZooKeeper server. Kafka has a single node Zookeeper configuration built-in.
