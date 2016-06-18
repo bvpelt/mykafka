@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.io.Resources;
 
-public class KafkaSender<K,V>{
+public class KafkaSender<K, V> {
 	private static Logger logger = LoggerFactory.getLogger(KafkaSender.class);
 
 	private Producer<K, V> producer = null;
@@ -38,13 +38,14 @@ public class KafkaSender<K,V>{
 	}
 
 	public void sendMessage(String topic, Integer partition, Long timestamp, K key, V message) {
-		logger.debug("Send message topic: {} partition: {} timestamp: {} key: {} message: {}", topic, partition, timestamp, key, message);
+		logger.debug("Send message topic: {} partition: {} timestamp: {} key: {} message: {}", topic, partition,
+				timestamp, key, message);
 
 		ProducerRecord<K, V> pr = new ProducerRecord<K, V>(topic, partition, timestamp, key, message);
 
 		producer.send(pr);
 	}
-	
+
 	public void sendMessage(String topic, K key, V message) {
 		logger.debug("Send message topic: {} key: {} message: {}", topic, key, message);
 

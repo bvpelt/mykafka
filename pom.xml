@@ -40,6 +40,7 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
+		
 		<!-- Test dependencies -->
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
@@ -52,9 +53,7 @@
 			<artifactId>curator-test</artifactId>
 			<version>${curator.version}</version>
 			<scope>test</scope>
-		</dependency>
-		
-		
+		</dependency>		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

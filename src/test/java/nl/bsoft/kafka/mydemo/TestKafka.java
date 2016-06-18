@@ -15,8 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kafka.server.KafkaConfig;
-import kafka.server.KafkaServer;
-
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestKafka {
@@ -34,7 +32,7 @@ public class TestKafka {
 
 	@Before
 	public void startKafka() {
-		logger.info("Start test: {}", name.getMethodName());
+		logger.info("Begin start kafka: {}", name.getMethodName());
 
 		kb = new KafkaBroker();
 		KafkaConfig kc = kb.getConfig();
@@ -52,12 +50,15 @@ public class TestKafka {
 		logger.info("sslClientAuth: {}", kc.sslClientAuth());
 		
 		
-		logger.info("End   test: {}", name.getMethodName());
+		logger.info("End   start kafka: {}", name.getMethodName());
 	}
 	
 	@After
 	public void stopKafka() {
+		logger.info("Begin stop kafka");
 		kb.stop();
+		kb = null;
+		logger.info("End   stop kafka");
 	}
 
 	public void test_A_Sender() {
@@ -152,7 +153,6 @@ public class TestKafka {
 		logger.info("End   test: {}", name.getMethodName());
 	}
 	
-
 	public void test_partitionA_Sender() {
 		KafkaSender<String, String> kafkaSender = new KafkaSender<String, String>();
 		kafkaSender.startSending();
@@ -163,14 +163,13 @@ public class TestKafka {
 			logger.info("Sending message: {}", i);
 			String key = UUID.randomUUID().toString();
 			String message = Integer.toString(i);
-			kafkaSender.sendMessage(my_part_topic, i % MAX_PARTITION, key, message);
+			kafkaSender.sendMessage(my_part_topic, (i % MAX_PARTITION), key, message);
 		}
 
 		kafkaSender.stopSending();
 		Assert.assertEquals(MAX_MESSAGES, i);
 	}
 
-	
 	public void test_partitionB_Receiver() {
 		KafkaReceiver<String, String> kafkaReceiver = new KafkaReceiver<String, String>();
 		kafkaReceiver.startListening(my_part_topic);
@@ -200,6 +199,5 @@ public class TestKafka {
 		test_partitionB_Receiver();
 		logger.info("End   test: {}", name.getMethodName());
 	}
-	*/
-	
+	*/	
 }
