@@ -20,7 +20,7 @@ import kafka.server.KafkaConfig;
 public class TestKafka {
 	private static Logger logger = LoggerFactory.getLogger(TestKafka.class);
 
-	private static int MAX_MESSAGES = 5;
+	private static int MAX_MESSAGES = 500;
 	private static int MAX_PARTITION = 4;
 	private static String my_topic = "my-topic";
 	private static String my_part_topic = "my-part-topic";
@@ -61,6 +61,7 @@ public class TestKafka {
 		logger.info("End   stop kafka");
 	}
 
+	
 	public void test_A_Sender() {
 		KafkaSender<String,String> kafkaSender = new KafkaSender<String,String>();
 		kafkaSender.startSending();
@@ -189,15 +190,17 @@ public class TestKafka {
 
 	}
 	
-	/*
+	
 	@Test
 	public void test_partition_value() {
 		logger.info("Start test: {}", name.getMethodName());
+		
+		kb.createTopic(my_part_topic, new Integer(MAX_PARTITION).toString());
 		
 		test_partitionA_Sender();
 		
 		test_partitionB_Receiver();
 		logger.info("End   test: {}", name.getMethodName());
 	}
-	*/	
+		
 }

@@ -5,14 +5,18 @@ import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.Properties;
 
+import org.I0Itec.zkclient.ZkClient;
 import org.apache.curator.test.TestingServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.io.Resources;
 
+import kafka.admin.TopicCommand;
 import kafka.server.KafkaConfig;
 import kafka.server.KafkaServerStartable;
+import kafka.utils.ZKStringSerializer$;
+import kafka.utils.ZkUtils;
 
 public class KafkaBroker {
 
@@ -102,5 +106,17 @@ public class KafkaBroker {
 		}
 		return kc;
 	}
+	
+	public void createTopic(String topic, String numberPartitions) {
+		logger.info("Begin CreateTopic: {} with number partitions: {}", topic, numberPartitions);
+		String[] arguments = new String[] { "--topic", topic, "--partitions", numberPartitions, "--replication-factor", "1" };
 
+		ZkClient zkClient = new ZkClient(zkServer.getConnectString(), 30000, 30000, ZKStringSerializer$.MODULE$);
+		ZkUtils zkutils = ZkUtils.apply(zkClient, false);
+		
+
+		// create topic
+		TopicCommand.createTopic(zkutils, new TopicCommand.TopicCommandOptions(arguments));
+		logger.info("End   CreateTopic: {} with number partitions: {}", topic, numberPartitions);
+	}
 }
