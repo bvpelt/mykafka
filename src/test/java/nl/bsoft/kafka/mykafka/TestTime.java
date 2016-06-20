@@ -1,4 +1,4 @@
-package nl.bsoft.kafka.mydemo;
+package nl.bsoft.kafka.mykafka;
 
 import kafka.utils.Time;
 

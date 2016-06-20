@@ -3,3 +3,5 @@ target
 .project
 .settings
 example.log*
+pom.xml.releaseBackup
+release.properties

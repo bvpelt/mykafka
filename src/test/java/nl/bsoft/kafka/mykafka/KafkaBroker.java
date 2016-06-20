@@ -1,4 +1,4 @@
-package nl.bsoft.kafka.mydemo;
+package nl.bsoft.kafka.mykafka;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,6 +17,7 @@ import kafka.server.KafkaConfig;
 import kafka.server.KafkaServerStartable;
 import kafka.utils.ZKStringSerializer$;
 import kafka.utils.ZkUtils;
+import nl.bsoft.kafka.mykafka.SortedProperties;
 
 public class KafkaBroker {
 

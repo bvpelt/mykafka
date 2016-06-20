@@ -1,4 +1,4 @@
-package nl.bsoft.kafka.mydemo;
+package nl.bsoft.kafka.mykafka;
 
 
 import java.util.UUID;
@@ -15,12 +15,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kafka.server.KafkaConfig;
+import nl.bsoft.kafka.mykafka.KafkaReceiver;
+import nl.bsoft.kafka.mykafka.KafkaSender;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestKafka {
 	private static Logger logger = LoggerFactory.getLogger(TestKafka.class);
 
-	private static int MAX_MESSAGES = 500;
+	private static int MAX_MESSAGES = 20;
 	private static int MAX_PARTITION = 4;
 	private static String my_topic = "my-topic";
 	private static String my_part_topic = "my-part-topic";

@@ -4,10 +4,10 @@
 
 	<groupId>nl.bsoft.kafka</groupId>
 	<artifactId>mykafka</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>mydemo</name>
+	<name>mykafka</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -22,6 +22,30 @@
 		<slf4j.version>1.7.12</slf4j.version>
 		<zkclient.version>0.8</zkclient.version>
 	</properties>
+
+	<scm>
+		<url>https://x1.github.com/bvpelt/mykafka</url>
+		<connection>scm:git:https://x2.github.com/bvpelt/mykafka.git</connection>
+		<developerConnection>scm:git:https://github.com/bvpelt/mykafka.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<organization>
+		<name>BSoft</name>
+	</organization>
+	
+	<developers>
+		<developer>
+			<id>bvpelt</id>
+			<name>Bart van Pelt</name>
+			<email>bart.vanpelt@gmail.com</email>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+			<timezone>Europe/Amsterdam</timezone>
+		</developer>
+	</developers>
 
 	<dependencies>
 		<dependency>
@@ -82,4 +106,6 @@
 
 		</plugins>
 	</build>
+
+	
 </project>
