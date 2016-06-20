@@ -8,8 +8,32 @@
 + See [Comparison kafka vs RabbitMQ](https://www.quora.com/What-are-the-differences-between-Apache-Kafka-and-RabbitMQ)
 + See [Unit testing](https://github.com/charithe/kafka-junit)
 
-TODO
-+ Start zookeeper and kafka from unit test see [https://cwiki.apache.org/confluence/display/KAFKA/FAQ#FAQ-HowdoIwriteunittestsusingKafka?](https://cwiki.apache.org/confluence/display/KAFKA/FAQ#FAQ-HowdoIwriteunittestsusingKafka?) 
+## Release
+Create a new release
++ make sure code is ok
++ checkin all code
++ ``` mvn clean release:clean ``` to make sure no garbage exists before building a release
++ ``` mvn release:prepare ```
+
+To be able to use git with scm add server identification to setting.xml with username / password.
+
+```
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                          https://maven.apache.org/xsd/settings-1.0.0.xsd">
+<servers>
+  <server>
+    <id>github.com</id>
+    <username>user</username>
+    <password>pwd</password>
+  </server>
+</servers>
+
+</settings>
+```
+Note since in my pom.xml scm uses https the username must not contain the '@' sign. If it does it can be urlencoded to make sure the right username is used.
+
 
 ## Prerequisits
 To start, you need to get Kafka up and running and create some topics.
