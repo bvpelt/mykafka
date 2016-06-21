@@ -7,6 +7,7 @@
 + See [Kafka manager](https://github.com/yahoo/kafka-manager)
 + See [Comparison kafka vs RabbitMQ](https://www.quora.com/What-are-the-differences-between-Apache-Kafka-and-RabbitMQ)
 + See [Unit testing](https://github.com/charithe/kafka-junit)
++ See [Example](https://www.mapr.com/blog/getting-started-sample-programs-apache-kafka-09)
 
 ## Release
 Create a new release
