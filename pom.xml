@@ -16,7 +16,7 @@
 		<curator.version>2.9.1</curator.version>
 		<guava.version>19.0</guava.version>
 		<junit.version>4.12</junit.version>
-		<kafka.version>0.10.0.0</kafka.version>
+		<kafka.version>0.10.2.2</kafka.version>
 		<log4j.version>1.7.12</log4j.version>
 		<maven.compiler.version>3.5.1</maven.compiler.version>
 		<slf4j.version>1.7.12</slf4j.version>
